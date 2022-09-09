@@ -1,10 +1,12 @@
+import { useState } from "react";
 export function Home() {
-  let numero = 0;
+  const [numero, setNumero] = useState(0);
 
   function AddNumber() {
-    numero = numero + 1;
-    console.log(numero);
+    setNumero(numero + 1);
   }
+
+  console.log(numero);
 
   return (
     <div>
