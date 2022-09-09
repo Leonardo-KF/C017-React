@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { api } from "../../utils/api/api";
 export function Form() {
   const [newAnime, setNewAnime] = useState();
 
@@ -14,8 +15,7 @@ export function Form() {
     // };
     setNewAnime({ ...newAnime, characters: [] });
 
-    console.log(newAnime);
-    // console.log(anime);
+    api.createAnime(newAnime);
   }
 
   // 0.5 Carlos Henrique
