@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { api } from "../../utils/api/api";
+
 export function Form() {
   const [newAnime, setNewAnime] = useState();
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-
+    // maneira alternativa usando o event do form
     // const anime = {
     //   title: event.target.title.value,
     //   protagonist: event.target.protagonist.value,
@@ -15,7 +16,7 @@ export function Form() {
     // };
     setNewAnime({ ...newAnime, characters: [] });
 
-    api.createAnime(newAnime);
+    await api.createAnime(newAnime);
   }
 
   // 0.5 Carlos Henrique
