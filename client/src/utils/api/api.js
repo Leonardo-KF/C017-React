@@ -10,4 +10,11 @@ export const api = {
     const newAnime = await response.json();
     return newAnime;
   },
+
+  getAllAnimes: async () => {
+    const response = await fetch(defaultUrl + "/");
+    const allAnimes = await response.json();
+
+    return allAnimes;
+  },
 };
