@@ -1,0 +1,14 @@
+.Home {
+  position: relative;
+  background: radial-gradient(
+    farthest-corner at 40px 40px,
+    #50c5ee 60%,
+    rgba(0, 212, 255, 0.5) 100%
+  );
+  min-height: calc(100vh - 60px);
+  margin: 15px;
+  padding: 15px;
+  border-radius: 20px;
+  color: black;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+}
