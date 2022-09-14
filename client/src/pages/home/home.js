@@ -10,6 +10,8 @@ export function Home() {
     setAnimeList(animes);
   }
 
+  console.log(animeList);
+
   // executa novamente toda vez que um state for alterado
   //   useEffect(() => {
   //     getAnime();
@@ -30,7 +32,15 @@ export function Home() {
     <>
       <div className="card-list">
         {animeList.map((item, index) => {
-          return <Card key={index} />;
+          return (
+            <Card
+              key={index}
+              title={item.title}
+              gender={item.gender}
+              protagonist={item.protagonist}
+              year={item.year}
+            />
+          );
         })}
       </div>
     </>
