@@ -5,3 +5,11 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+
+.button-card {
+  display: flex;
+  width: 30%;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+}

@@ -1,13 +1,35 @@
 import { Card } from "../../components/card/card";
 import { api } from "../../utils/api/api";
 import { useState, useEffect } from "react";
+import Modal from "react-modal";
 import "./home.css";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+  overlay: {
+    background: "rgba(0, 0, 0, 0.4)",
+  },
+};
+
+Modal.setAppElement("#root");
 export function Home() {
   const [animeList, setAnimeList] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   async function getAnime() {
     const animes = await api.getAllAnimes();
     setAnimeList(animes);
+  }
+
+  function handleModal() {
+    setModalIsOpen(!modalIsOpen);
   }
 
   console.log(animeList);
@@ -33,16 +55,34 @@ export function Home() {
       <div className="card-list">
         {animeList.map((item, index) => {
           return (
-            <Card
+            <button
+              className="button-card"
+              onClick={() => {
+                handleModal();
+                console.log(item);
+              }}
               key={index}
-              title={item.title}
-              gender={item.gender}
-              protagonist={item.protagonist}
-              year={item.year}
-            />
+            >
+              <Card
+                title={item.title}
+                gender={item.gender}
+                protagonist={item.protagonist}
+                year={item.year}
+              />
+            </button>
           );
         })}
       </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={handleModal}
+        style={customStyles}
+        contentLabel="Card details"
+      >
+        <section>
+          <h2>{}</h2>
+        </section>
+      </Modal>
     </>
   );
 }
