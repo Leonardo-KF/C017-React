@@ -3,7 +3,7 @@ export const paletas = [
     titulo: "Açaí com Leite Condensado",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/acai-com-leite-condensado.png").default,
+    foto: "src/assets/images/acai-com-leite-condensado.png",
     preco: 10.0,
     sabor: "Açaí",
     recheio: "Leite Condensado",
@@ -13,7 +13,7 @@ export const paletas = [
     titulo: "Banana com Nutella",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/banana-com-nutella.png").default,
+    foto: "src/assets/images/banana-com-nutella.png",
     preco: 10.0,
     sabor: "Banana",
     recheio: "Nutella",
@@ -23,7 +23,7 @@ export const paletas = [
     titulo: "Chocolate Belga",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/chocolate-belga.png").default,
+    foto: "src/assets/images/chocolate-belga.png",
     preco: 7.0,
     sabor: "Chocolate Belga",
     possuiRecheio: false,
@@ -32,7 +32,7 @@ export const paletas = [
     titulo: "Chocolate Belga com Brigadeiro",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/chocolate-belga-com-brigadeiro.png").default,
+    foto: "src/assets/images/chocolate-belga-com-brigadeiro.png",
     preco: 10.0,
     sabor: "Chocolate Belga",
     recheio: "Brigadeiro",
@@ -42,7 +42,7 @@ export const paletas = [
     titulo: "Chocolate Branco",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/chocolate-branco.png").default,
+    foto: "src/assets/images/chocolate-branco.png",
     preco: 7.0,
     sabor: "Chocolate Branco",
     possuiRecheio: false,
@@ -51,7 +51,7 @@ export const paletas = [
     titulo: "Coco",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/coco.png").default,
+    foto: "src/assets/images/coco.png",
     preco: 7.0,
     sabor: "Coco",
     possuiRecheio: false,
@@ -60,7 +60,7 @@ export const paletas = [
     titulo: "Coco com Doce de Leite",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/coco-com-doce-de-leite.png").default,
+    foto: "src/assets/images/coco-com-doce-de-leite.png",
     preco: 10.0,
     sabor: "Coco",
     recheio: "Doce de Leite",
@@ -70,7 +70,7 @@ export const paletas = [
     titulo: "Cookies",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/cookies.png").default,
+    foto: "src/assets/images/cookies.png",
     preco: 7.0,
     sabor: "Cookies",
     possuiRecheio: false,
@@ -79,7 +79,7 @@ export const paletas = [
     titulo: "Doce de Leite com Doce de Leite",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/doce-de-leite-com-doce-de-leite.png").default,
+    foto: "src/assets/images/doce-de-leite-com-doce-de-leite.png",
     preco: 10.0,
     sabor: "Doce de Leite",
     recheio: "Doce de Leite",
@@ -89,7 +89,7 @@ export const paletas = [
     titulo: "Limão",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/limao.png").default,
+    foto: "src/assets/images/limao.png",
     preco: 7.0,
     sabor: "Limão",
     possuiRecheio: false,
@@ -98,7 +98,7 @@ export const paletas = [
     titulo: "Maracujá",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/maracuja.png").default,
+    foto: "src/assets/images/maracuja.png",
     preco: 7.0,
     sabor: "Maracujá",
     possuiRecheio: false,
@@ -107,7 +107,7 @@ export const paletas = [
     titulo: "Maracujá com Leite Condensado",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/maracuja-com-leite-condensado.png").default,
+    foto: "src/assets/images/maracuja-com-leite-condensado.png",
     preco: 10.0,
     sabor: "Maracujá",
     recheio: "Leite Condensado",
@@ -117,7 +117,7 @@ export const paletas = [
     titulo: "Milho Verde",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/milho-verde.png").default,
+    foto: "src/assets/images/milho-verde.png",
     preco: 7.0,
     sabor: "Milho Verde",
     possuiRecheio: false,
@@ -126,7 +126,7 @@ export const paletas = [
     titulo: "Morango",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/morango.png").default,
+    foto: "src/assets/images/morango.png",
     preco: 7.0,
     sabor: "Morango",
     possuiRecheio: false,
@@ -135,7 +135,7 @@ export const paletas = [
     titulo: "Morango com Leite Condensado",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/morango-com-leite-condensado.png").default,
+    foto: "src/assets/images/morango-com-leite-condensado.png",
     preco: 10.0,
     sabor: "Morango",
     recheio: "Leite Condensado",
@@ -145,7 +145,7 @@ export const paletas = [
     titulo: "Morango com Nutella",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/morango-com-nutella.png").default,
+    foto: "src/assets/images/morango-com-nutella.png",
     preco: 10.0,
     sabor: "Morango",
     recheio: "Nutella",
@@ -155,7 +155,7 @@ export const paletas = [
     titulo: "Ninho com Nutella",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/ninho-com-nutella.png").default,
+    foto: "src/assets/images/ninho-com-nutella.png",
     preco: 10.0,
     sabor: "Ninho",
     recheio: "Nutella",
@@ -165,7 +165,7 @@ export const paletas = [
     titulo: "Ninho com Ovomaltine",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/ninho-com-ovomaltine.png").default,
+    foto: "src/assets/images/ninho-com-ovomaltine.png",
     preco: 10.0,
     sabor: "Ninho",
     recheio: "Ovomaltine",
@@ -175,7 +175,7 @@ export const paletas = [
     titulo: "Uva",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: require("assets/images/uva.png").default,
+    foto: "src/assets/images/uva.png",
     preco: 7.0,
     sabor: "Uva",
     possuiRecheio: false,
