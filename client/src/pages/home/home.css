@@ -1,9 +1,19 @@
+.home-page {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
 .card-list {
   display: flex;
   width: 80%;
+  height: 80%;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  align-content: center;
 }
 
 .button-card {

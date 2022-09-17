@@ -1,6 +1,7 @@
 import Modal from "react-modal";
 import { useState } from "react";
 import { GrFormAdd } from "react-icons/gr";
+import { Form } from "../components/form/form";
 import "./header.css";
 
 const customStyles = {
@@ -22,7 +23,7 @@ const customStyles = {
 };
 
 Modal.setAppElement("#root");
-export function Header() {
+export function Header({ getAll }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   function handleModal() {
@@ -30,13 +31,14 @@ export function Header() {
   }
 
   return (
-    <div>
-      <header>
-        <section>
+    <>
+      <header className="header-home">
+        <section className="header-section">
           <img src="./shuriken.png" alt="logo" height="40" width="40"></img>
+          <h2 style={{ paddingLeft: "10px" }}>AnimeFlix</h2>
         </section>
         <section>
-          <button onClick={handleModal}>
+          <button className="modal-button" onClick={handleModal}>
             <GrFormAdd size={28} /> Add Anime
           </button>
         </section>
@@ -45,8 +47,10 @@ export function Header() {
         isOpen={modalIsOpen}
         onRequestClose={handleModal}
         style={customStyles}
-        contentLabel="Card details"
-      ></Modal>
-    </div>
+        contentLabel="form Create"
+      >
+        <Form getAll={getAll} handleModal={handleModal} />
+      </Modal>
+    </>
   );
 }

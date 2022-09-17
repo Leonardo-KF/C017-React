@@ -29,22 +29,55 @@ export function Home() {
   const [animeList, setAnimeList] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [uniqueAnime, setUniqueAnime] = useState({});
+  const [editAnime, setEditAnime] = useState(false);
 
   async function getAnime() {
     const animes = await api.getAllAnimes();
     setAnimeList(animes);
   }
 
+  function deleteAnime(animeId) {
+    api.deleteAnime(animeId);
+    const newAnimeList = animeList;
+    newAnimeList.map((anime, index) => {
+      if (anime.id === animeId) {
+        newAnimeList.splice(index, 1);
+        setAnimeList(newAnimeList);
+        handleModal();
+      }
+    });
+  }
+
   function handleModal() {
     setModalIsOpen(!modalIsOpen);
   }
 
-  console.log(animeList);
+  function changeAnime(event, animeId) {
+    event.preventDefault();
+
+    const anime = {
+      title: event.target.title.value,
+      protagonist: event.target.protagonist.value,
+      gender: event.target.gender.value,
+      year: event.target.year.value,
+      characters: [],
+    };
+
+    const newAnimeList = animeList;
+    newAnimeList.map((item, index) => {
+      if (item.id === animeId) {
+        newAnimeList.splice(index, 1, anime);
+        setAnimeList(newAnimeList);
+        handleModal();
+      }
+    });
+    setEditAnime(false);
+  }
 
   // executa novamente toda vez que um state for alterado
-  //   useEffect(() => {
-  //     getAnime();
-  //   });
+  // useEffect(() => {
+  //   getAnime();
+  // });
 
   // executa somente quando o componente for renderizado pois não há nada no array de dependencias
   useEffect(() => {
@@ -56,10 +89,9 @@ export function Home() {
   //     getAnime();
   //   }, [animeList]);
 
-  console.log("Renderizou");
   return (
-    <>
-      <Header />
+    <section className="home-page">
+      <Header getAll={getAnime} />
       <div className="card-list">
         {animeList.map((item, index) => {
           return (
@@ -87,32 +119,94 @@ export function Home() {
         style={customStyles}
         contentLabel="Card details"
       >
-        <section>
-          <section
-            style={{
-              display: "flex",
-              width: "100%",
-              justifyContent: "flex-end",
-              alignItems: "center",
-            }}
-          >
+        {editAnime ? (
+          <>
+            (
+            <div className="form">
+              <form onSubmit={changeAnime} className="form-inputs">
+                <section>
+                  <span>Title:</span>
+                  <input
+                    type="text"
+                    name="title"
+                    defaultValue={uniqueAnime.title}
+                  ></input>
+                </section>
+                <section>
+                  <span>Protagonist</span>
+                  <input
+                    type="text"
+                    name="protagonist"
+                    defaultValue={uniqueAnime.protagonist}
+                  ></input>
+                </section>
+                <section>
+                  <span>Gender:</span>
+                  <input
+                    type="text"
+                    name="gender"
+                    defaultValue={uniqueAnime.gender}
+                  ></input>
+                </section>
+                <section>
+                  <span>Year:</span>
+                  <input
+                    type="number"
+                    name="year"
+                    defaultValue={uniqueAnime.year}
+                  ></input>
+                </section>
+                <button type="submit" className="btn-submit">
+                  Submit
+                </button>
+              </form>
+            </div>
+            )
+          </>
+        ) : (
+          <>
+            <section>
+              <section
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                }}
+              >
+                <button
+                  style={{
+                    backgroundColor: "transparent",
+                    cursor: "pointer",
+                    border: "none",
+                  }}
+                  onClick={handleModal}
+                >
+                  <CgClose size={28} color="red" />
+                </button>
+              </section>
+              <h2>{uniqueAnime.title}</h2>
+              <h3>{uniqueAnime.gender}</h3>
+              <h3>{uniqueAnime.protagonist}</h3>
+              <h3>{uniqueAnime.year}</h3>
+            </section>
             <button
-              style={{
-                backgroundColor: "transparent",
-                cursor: "pointer",
-                border: "none",
+              onClick={() => {
+                setEditAnime(true);
               }}
-              onClick={handleModal}
             >
-              <CgClose size={28} color="red" />
+              Edit
             </button>
-          </section>
-          <h2>{uniqueAnime.title}</h2>
-          <h3>{uniqueAnime.gender}</h3>
-          <h3>{uniqueAnime.protagonist}</h3>
-          <h3>{uniqueAnime.year}</h3>
-        </section>
+            <button
+              onClick={() => {
+                deleteAnime(uniqueAnime.id);
+              }}
+            >
+              Delete
+            </button>
+          </>
+        )}
       </Modal>
-    </>
+    </section>
   );
 }
