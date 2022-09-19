@@ -26,4 +26,15 @@ export const api = {
     const animeDeleted = await response.json();
     return animeDeleted;
   },
+
+  updateAnime: async (anime) => {
+    const response = await fetch(defaultUrl + "/update", {
+      method: "PUT",
+      headers: new Headers({ "Content-Type": "application/json" }),
+      body: JSON.stringify(anime),
+    });
+
+    const animeUpdated = await response.json();
+    return animeUpdated;
+  },
 };

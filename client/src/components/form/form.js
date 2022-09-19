@@ -4,6 +4,7 @@ import { api } from "../../utils/api/api";
 export function Form({ getAll, handleModal }) {
   const [newAnime, setNewAnime] = useState({ characters: [] });
   const [loading, setLoading] = useState(false);
+
   async function handleSubmit(event) {
     setLoading(true);
     event.preventDefault();
