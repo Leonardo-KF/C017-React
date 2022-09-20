@@ -89,3 +89,20 @@
   height: 150px;
   margin-right: -60px;
 }
+
+.PaletaListaItem__badge {
+  background-color: greenyellow;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+  color: black;
+  font-size: .8em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  top: -9px;
+  left: -9px;
+}
