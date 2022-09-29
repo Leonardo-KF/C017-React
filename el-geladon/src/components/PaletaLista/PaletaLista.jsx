@@ -2,11 +2,23 @@ import { useEffect, useState } from "react";
 import { api } from "../../utils/api/api";
 import { PaletaListaItem } from "../PaletaListaItem/PaletaListaItem";
 import "./PaletaLista.css";
+import { PaletaDetalhesModal } from "../PaletaDetalhesModal/PaletaDetalhesModal";
 
 export function PaletaLista() {
   const [paletas, setPaletas] = useState([]);
 
   const [paletaSelecionada, setPaletaSelecionada] = useState({});
+
+  const paletaMock = {
+    titulo: "Açaí com Leite Condensado",
+    descricao:
+      "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
+    foto: "src/assets/images/acai-com-leite-condensado.png",
+    preco: 10.0,
+    sabor: "Açaí",
+    recheio: "Leite Condensado",
+    possuiRecheio: true,
+  };
 
   const adicionarPaleta = (paletaIndex) => {
     const paleta = {
@@ -45,6 +57,8 @@ export function PaletaLista() {
           onAdd={(index) => adicionarPaleta(index)}
         />
       ))}
+
+      <PaletaDetalhesModal paleta={paletaMock} />
     </div>
   );
 }

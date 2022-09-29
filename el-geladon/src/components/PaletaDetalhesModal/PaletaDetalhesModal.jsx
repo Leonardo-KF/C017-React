@@ -13,12 +13,12 @@ export function PaletaDetalhesModal({ paleta, closeModal }) {
           <div className="PaletaDetalhesModal__descricao">
             {paleta.descricao}
           </div>
-          <img
+        </div>
+        <img
             src={paleta.foto}
             alt={`Paleta de ${paleta.sabor}`}
             className="PaletaDetalhesModal__foto"
           />
-        </div>
       </div>
     </Modal>
   );
