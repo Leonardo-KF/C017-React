@@ -1,7 +1,7 @@
-import "./PaletaLista.css";
-import { PaletaListaItem } from "../PaletaListaItem/PaletaListaItem";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../../utils/api/api";
+import { PaletaListaItem } from "../PaletaListaItem/PaletaListaItem";
+import "./PaletaLista.css";
 
 export function PaletaLista() {
   const [paletas, setPaletas] = useState([]);
