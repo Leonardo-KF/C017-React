@@ -1,9 +1,11 @@
 import "./PaletaLista.css";
 import { PaletaListaItem } from "../PaletaListaItem/PaletaListaItem";
-import { paletas } from "../../mocks/paletas";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { api } from "../../utils/api/api";
 
 export function PaletaLista() {
+  const [paletas, setPaletas] = useState([]);
+
   const [paletaSelecionada, setPaletaSelecionada] = useState({});
 
   const adicionarPaleta = (paletaIndex) => {
@@ -21,6 +23,15 @@ export function PaletaLista() {
 
     setPaletaSelecionada({ ...paletaSelecionada, ...paleta });
   };
+
+  const getPaletas = async () => {
+    const response = await api.getAllPaletas();
+    setPaletas(response);
+  };
+
+  useEffect(() => {
+    getPaletas();
+  }, []);
 
   return (
     <div className="PaletaLista">
