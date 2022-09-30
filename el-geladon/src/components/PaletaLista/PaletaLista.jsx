@@ -9,6 +9,8 @@ export function PaletaLista() {
 
   const [paletaSelecionada, setPaletaSelecionada] = useState({});
 
+  const [paletaModal, setPaletaModal] = useState(false);
+
   const paletaMock = {
     titulo: "Açaí com Leite Condensado",
     descricao:
@@ -58,7 +60,12 @@ export function PaletaLista() {
         />
       ))}
 
-      <PaletaDetalhesModal paleta={paletaMock} />
+      {paletaModal && (
+        <PaletaDetalhesModal
+          paleta={paletaModal}
+          closeModal={() => setPaletaModal(false)}
+        />
+      )}
     </div>
   );
 }
