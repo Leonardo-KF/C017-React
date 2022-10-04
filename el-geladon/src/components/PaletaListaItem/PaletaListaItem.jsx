@@ -6,10 +6,17 @@ export function PaletaListaItem({
   index,
   onRemove,
   onAdd,
+  clickItem,
 }) {
   const removeButton = (canReader, index) =>
     Boolean(canReader) && (
-      <button className="Acoes__remover" onClick={() => onRemove(index)}>
+      <button
+        className="Acoes__remover"
+        onClick={(e) => {
+          e.stopPropagation();
+          onRemove(index);
+        }}
+      >
         remover
       </button>
     );
@@ -20,7 +27,7 @@ export function PaletaListaItem({
     );
 
   return (
-    <div className="PaletaListaItem">
+    <div className="PaletaListaItem" onClick={() => clickItem(paleta._id)}>
       {badgeCounter(quantidadeSelecionada)}
       <div>
         <div className="PaletaListaItem__titulo">{paleta.titulo}</div>
@@ -33,7 +40,10 @@ export function PaletaListaItem({
             className={`Acoes__adicionar ${
               !quantidadeSelecionada && "Acoes__adicionar--preencher"
             }`}
-            onClick={() => onAdd(index)}
+            onClick={(e) => {
+              e.stopPropagation();
+              onAdd(index);
+            }}
           >
             adicionar
           </button>

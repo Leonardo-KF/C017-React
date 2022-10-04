@@ -43,6 +43,11 @@ export function PaletaLista() {
     setPaletas(response);
   };
 
+  const getPaletaById = async (paletaId) => {
+    const response = await api.getPaletaById(paletaId);
+    setPaletaModal(response);
+  };
+
   useEffect(() => {
     getPaletas();
   }, []);
@@ -57,6 +62,7 @@ export function PaletaLista() {
           index={index}
           onRemove={(index) => removerPaleta(index)}
           onAdd={(index) => adicionarPaleta(index)}
+          clickItem={(paletaId) => getPaletaById(paletaId)}
         />
       ))}
 
