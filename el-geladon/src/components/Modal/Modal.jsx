@@ -11,7 +11,7 @@ export function Modal({ children, closeModal }) {
 
   return (
     <Overlay overlayClick={closeModal}>
-      <div className="Modal">
+      <div className="Modal" onClick={handleClick}>
         <span className="Modal__close" onClick={(e) => handleClick(e, true)}>
           +
         </span>
