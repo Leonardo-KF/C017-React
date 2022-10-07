@@ -4,23 +4,12 @@ import { PaletaListaItem } from "../PaletaListaItem/PaletaListaItem";
 import "./PaletaLista.css";
 import { PaletaDetalhesModal } from "../PaletaDetalhesModal/PaletaDetalhesModal";
 
-export function PaletaLista() {
+export function PaletaLista({ paletaCriada }) {
   const [paletas, setPaletas] = useState([]);
 
   const [paletaSelecionada, setPaletaSelecionada] = useState({});
 
   const [paletaModal, setPaletaModal] = useState(false);
-
-  const paletaMock = {
-    titulo: "Açaí com Leite Condensado",
-    descricao:
-      "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: "src/assets/images/acai-com-leite-condensado.png",
-    preco: 10.0,
-    sabor: "Açaí",
-    recheio: "Leite Condensado",
-    possuiRecheio: true,
-  };
 
   const adicionarPaleta = (paletaIndex) => {
     const paleta = {
@@ -47,6 +36,15 @@ export function PaletaLista() {
     const response = await api.getPaletaById(paletaId);
     setPaletaModal(response);
   };
+
+  const adicionaPaletaNaLista = (paleta) => {
+    const lista = [...paletas, paleta];
+    setPaletas(lista);
+  };
+
+  useEffect(() => {
+    if (paletaCriada) adicionaPaletaNaLista(paletaCriada);
+  }, [paletaCriada]);
 
   useEffect(() => {
     getPaletas();

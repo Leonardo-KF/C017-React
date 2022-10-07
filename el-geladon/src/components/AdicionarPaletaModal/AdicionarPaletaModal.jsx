@@ -1,8 +1,9 @@
 import "./AdicionarPaletaModal.css";
 import { Modal } from "../Modal/Modal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { api } from "../../utils/api/api";
 
-export function AdicionarPaletaModal({ closeModal }) {
+export function AdicionarPaletaModal({ closeModal, onCreatePaleta }) {
   const form = {
     titulo: "",
     preco: "",
@@ -15,6 +16,42 @@ export function AdicionarPaletaModal({ closeModal }) {
   const handleChange = (e, name) => {
     setState({ ...state, [name]: e.target.value });
   };
+
+  const createPaleta = async () => {
+    const { titulo, preco, descricao, foto } = state;
+
+    const paleta = {
+      titulo,
+      preco,
+      descricao,
+      foto,
+    };
+
+    const response = await api.createPaleta(paleta);
+
+    onCreatePaleta(response)
+
+    closeModal()
+
+    return response;
+  };
+
+  const [canDisable, setCanDisable] = useState(true);
+
+  const canDisableSendButton = () => {
+    const response = !Boolean(
+      state.titulo.length &&
+        state.preco.length &&
+        state.descricao.length &&
+        state.foto.length
+    );
+
+    setCanDisable(response);
+  };
+
+  useEffect(() => {
+    canDisableSendButton();
+  });
 
   return (
     <Modal closeModal={closeModal}>
@@ -70,11 +107,14 @@ export function AdicionarPaletaModal({ closeModal }) {
             />
           </div>
 
-          <input
-            type="submit"
+          <button
             className="AdicionarPaletaModal__enviar"
-            value="Enviar"
-          />
+            type="button"
+            disabled={canDisable}
+            onClick={createPaleta}
+          >
+            Enviar
+          </button>
         </form>
       </div>
     </Modal>

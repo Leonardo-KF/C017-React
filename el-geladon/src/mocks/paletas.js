@@ -3,7 +3,7 @@ export const paletas = [
     titulo: "Açaí com Leite Condensado",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: "src/assets/images/acai-com-leite-condensado.png",
+    foto: "https://i.imgur.com/mNn7ugN.png",
     preco: 10.0,
     sabor: "Açaí",
     recheio: "Leite Condensado",
@@ -13,7 +13,7 @@ export const paletas = [
     titulo: "Banana com Nutella",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: "src/assets/images/banana-com-nutella.png",
+    foto: "https://i.imgur.com/s865CjI.png",
     preco: 10.0,
     sabor: "Banana",
     recheio: "Nutella",
@@ -23,7 +23,7 @@ export const paletas = [
     titulo: "Chocolate Belga",
     descricao:
       "Quam vulputate dignissim suspendisse in est ante in nibh mauris.",
-    foto: "src/assets/images/chocolate-belga.png",
+    foto: "https://i.imgur.com/68bCRIO.png",
     preco: 7.0,
     sabor: "Chocolate Belga",
     possuiRecheio: false,
