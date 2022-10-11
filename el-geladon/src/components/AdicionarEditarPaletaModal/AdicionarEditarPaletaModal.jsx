@@ -1,9 +1,9 @@
-import "./AdicionarPaletaModal.css";
+import "./AdicionarEditarPaletaModal.css";
 import { Modal } from "../Modal/Modal";
 import { useState, useEffect } from "react";
 import { api } from "../../utils/api/api";
 
-export function AdicionarPaletaModal({ closeModal, onCreatePaleta }) {
+export function AdicionarEditarPaletaModal({ closeModal, onCreatePaleta }) {
   const form = {
     titulo: "",
     preco: "",
