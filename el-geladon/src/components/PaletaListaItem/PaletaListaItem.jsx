@@ -1,5 +1,7 @@
 import "./PaletaListaItem.css";
 
+import { ActionMode } from "../../constants/index";
+
 export function PaletaListaItem({
   paleta,
   quantidadeSelecionada,
@@ -7,10 +9,12 @@ export function PaletaListaItem({
   onRemove,
   onAdd,
   clickItem,
+  mode,
 }) {
   const removeButton = (canReader, index) =>
     Boolean(canReader) && (
       <button
+        disabled={mode !== ActionMode.NORMAL}
         className="Acoes__remover"
         onClick={(e) => {
           e.stopPropagation();
@@ -26,9 +30,16 @@ export function PaletaListaItem({
       <span className="PaletaListaItem__badge">{quantidadeSelecionada}</span>
     );
 
+  const badgeAction = (canReader) => {
+    if (canReader) {
+      return <span className="PaletaListaItem__tag">{mode}</span>;
+    }
+  };
+
   return (
     <div className="PaletaListaItem" onClick={() => clickItem(paleta._id)}>
       {badgeCounter(quantidadeSelecionada)}
+      {badgeAction(mode !== ActionMode.NORMAL)}
       <div>
         <div className="PaletaListaItem__titulo">{paleta.titulo}</div>
         <div className="PaletaListaItem__preco">
@@ -37,6 +48,7 @@ export function PaletaListaItem({
         <div className="PaletaListaItem__descricao">{paleta.descricao}</div>
         <div className="PaletaListaItem__acoes Acoes">
           <button
+            disabled={mode !== ActionMode.NORMAL}
             className={`Acoes__adicionar ${
               !quantidadeSelecionada && "Acoes__adicionar--preencher"
             }`}

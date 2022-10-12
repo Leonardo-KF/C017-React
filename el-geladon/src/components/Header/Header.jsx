@@ -1,10 +1,13 @@
 import "./Header.css";
 
+import { ActionMode } from "../../constants/index";
+
 import sacola from "../../assets/icons/sacola.svg";
 import logo from "../../assets/logo.svg";
 import paleta from "../../assets/icons/paleta.svg";
+import atualizar from "../../assets/icons/atualizar.svg";
 
-export function Header({ createPaleta }) {
+export function Header({ createPaleta, updatePaleta, mode }) {
   return (
     <div className="Header">
       <div className="row">
@@ -18,6 +21,19 @@ export function Header({ createPaleta }) {
           <span className="Logo__titulo">El Geladon</span>
         </div>
         <div className="Header__opcoes Opcoes">
+          <button
+            type="button"
+            className={`Opcoes__paleta Paleta ${mode === ActionMode.ATUALIZAR && "Paleta--ativa"}`}
+            onClick={() => updatePaleta()}
+          >
+            <img
+              src={atualizar}
+              alt="Editar paleta"
+              className="Paleta__icone"
+              width="40px"
+            />
+          </button>
+
           <button
             type="button"
             className="Opcoes__paleta Paleta"
