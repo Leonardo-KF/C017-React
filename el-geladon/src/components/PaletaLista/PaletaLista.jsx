@@ -1,10 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { api } from "../../utils/api/api";
 import { PaletaListaItem } from "../PaletaListaItem/PaletaListaItem";
 import "./PaletaLista.css";
 import { PaletaDetalhesModal } from "../PaletaDetalhesModal/PaletaDetalhesModal";
+import { ActionMode } from "../../constants";
 
-export function PaletaLista({ paletaCriada, mode }) {
+export function PaletaLista({
+  paletaCriada,
+  mode,
+  updatePaLeta,
+  deletePaleta,
+}) {
   const [paletas, setPaletas] = useState([]);
 
   const [paletaSelecionada, setPaletaSelecionada] = useState({});
@@ -34,7 +40,14 @@ export function PaletaLista({ paletaCriada, mode }) {
 
   const getPaletaById = async (paletaId) => {
     const response = await api.getPaletaById(paletaId);
-    setPaletaModal(response);
+    
+    const mapper = {
+      [ActionMode.NORMAL]: () => setPaletaModal(response),
+      [ActionMode.ATUALIZAR]: () => updatePaLeta(response),
+      [ActionMode.DELETAR]: () => deletePaleta(response),
+    };
+
+    mapper[mode]();
   };
 
   const adicionaPaletaNaLista = (paleta) => {
@@ -43,8 +56,9 @@ export function PaletaLista({ paletaCriada, mode }) {
   };
 
   useEffect(() => {
-    if (paletaCriada) adicionaPaletaNaLista(paletaCriada);
-  }, [paletaCriada]);
+    if (paletaCriada && !paletas.map(({ id }) => id).includes(paletaCriada.id))
+      adicionaPaletaNaLista(paletaCriada);
+  }, [paletaCriada, adicionaPaletaNaLista, paletas]);
 
   useEffect(() => {
     getPaletas();

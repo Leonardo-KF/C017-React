@@ -37,7 +37,12 @@ export function PaletaListaItem({
   };
 
   return (
-    <div className="PaletaListaItem" onClick={() => clickItem(paleta._id)}>
+    <div
+      className={`PaletaListaItem ${
+        mode !== ActionMode.NORMAL && "PaletaListaItem--disable"
+      }`}
+      onClick={() => clickItem(paleta._id)}
+    >
       {badgeCounter(quantidadeSelecionada)}
       {badgeAction(mode !== ActionMode.NORMAL)}
       <div>
