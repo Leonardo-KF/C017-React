@@ -57,6 +57,8 @@ export function Home() {
 
         {canShowAdicionarPaletaModal && (
           <AdicionarEditarPaletaModal
+            mode={modoAtual}
+            paletaToUpdate={paletaParaEditar}
             closeModal={handleCloseModal}
             onCreatePaleta={(paleta) => setPaletaParaAdicionar(paleta)}
           />

@@ -40,7 +40,7 @@ export function PaletaLista({
 
   const getPaletaById = async (paletaId) => {
     const response = await api.getPaletaById(paletaId);
-    
+
     const mapper = {
       [ActionMode.NORMAL]: () => setPaletaModal(response),
       [ActionMode.ATUALIZAR]: () => updatePaLeta(response),
@@ -50,14 +50,21 @@ export function PaletaLista({
     mapper[mode]();
   };
 
-  const adicionaPaletaNaLista = (paleta) => {
-    const lista = [...paletas, paleta];
-    setPaletas(lista);
-  };
+  const adicionaPaletaNaLista = useCallback(
+    (paleta) => {
+      const lista = [...paletas, paleta];
+      setPaletas(lista);
+    },
+    [paletas]
+  );
 
   useEffect(() => {
-    if (paletaCriada && !paletas.map(({ id }) => id).includes(paletaCriada.id))
+    if (
+      paletaCriada &&
+      !paletas.map(({ id }) => id).includes(paletaCriada.id)
+    ) {
       adicionaPaletaNaLista(paletaCriada);
+    }
   }, [paletaCriada, adicionaPaletaNaLista, paletas]);
 
   useEffect(() => {
