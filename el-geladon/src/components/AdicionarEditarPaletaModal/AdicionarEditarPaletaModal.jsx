@@ -2,13 +2,20 @@ import "./AdicionarEditarPaletaModal.css";
 import { Modal } from "../Modal/Modal";
 import { useState, useEffect } from "react";
 import { api } from "../../utils/api/api";
+import { ActionMode } from "../../constants";
 
-export function AdicionarEditarPaletaModal({ closeModal, onCreatePaleta }) {
+export function AdicionarEditarPaletaModal({
+  closeModal,
+  onCreatePaleta,
+  mode,
+  paletaToUpdate,
+  onUpdatePaleta,
+}) {
   const form = {
-    titulo: "",
-    preco: "",
-    descricao: "",
-    foto: "",
+    titulo: paletaToUpdate?.titulo ?? "",
+    preco: paletaToUpdate?.preco ?? "",
+    descricao: paletaToUpdate?.descricao ?? "",
+    foto: paletaToUpdate?.foto ?? "",
   };
 
   const [state, setState] = useState(form);
@@ -17,7 +24,7 @@ export function AdicionarEditarPaletaModal({ closeModal, onCreatePaleta }) {
     setState({ ...state, [name]: e.target.value });
   };
 
-  const createPaleta = async () => {
+  const handleSend = async () => {
     const { titulo, preco, descricao, foto } = state;
 
     const paleta = {
@@ -27,13 +34,31 @@ export function AdicionarEditarPaletaModal({ closeModal, onCreatePaleta }) {
       foto,
     };
 
-    const response = await api.createPaleta(paleta);
+    const apiCall = {
+      [ActionMode.NORMAL]: () => api.createPaleta(paleta),
+      [ActionMode.ATUALIZAR]: () =>
+        api.updatePaleta(paletaToUpdate?._id, paleta),
+    };
 
-    onCreatePaleta(response)
+    const response = await apiCall[mode]();
 
-    closeModal()
+    const actionResponse = {
+      [ActionMode.NORMAL]: () => onCreatePaleta(response),
+      [ActionMode.ATUALIZAR]: () => onUpdatePaleta(response),
+    };
 
-    return response;
+    actionResponse[mode]();
+
+    const reset = {
+      titulo: "",
+      preco: "",
+      descricao: "",
+      foto: "",
+    };
+
+    setState(reset);
+
+    closeModal();
   };
 
   const [canDisable, setCanDisable] = useState(true);
@@ -41,7 +66,7 @@ export function AdicionarEditarPaletaModal({ closeModal, onCreatePaleta }) {
   const canDisableSendButton = () => {
     const response = !Boolean(
       state.titulo.length &&
-        state.preco.length &&
+        String(state.preco).length &&
         state.descricao.length &&
         state.foto.length
     );
@@ -57,7 +82,10 @@ export function AdicionarEditarPaletaModal({ closeModal, onCreatePaleta }) {
     <Modal closeModal={closeModal}>
       <div className="AdicionarPaletaModal">
         <form autoComplete="off">
-          <h2>Adicionar ao Cardápio</h2>
+          <h2>
+            {ActionMode.ATUALIZAR === mode ? "Atualizar" : "Adicionar ao"}{" "}
+            Cardápio
+          </h2>
           <div>
             <label htmlFor="titulo" className="AdicionarPaletaModal__text">
               Título:
@@ -111,9 +139,9 @@ export function AdicionarEditarPaletaModal({ closeModal, onCreatePaleta }) {
             className="AdicionarPaletaModal__enviar"
             type="button"
             disabled={canDisable}
-            onClick={createPaleta}
+            onClick={handleSend}
           >
-            Enviar
+            {ActionMode.NORMAL === mode ? "Enviar" : "Atualizar"}
           </button>
         </form>
       </div>

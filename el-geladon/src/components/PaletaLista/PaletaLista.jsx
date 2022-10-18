@@ -7,6 +7,7 @@ import { ActionMode } from "../../constants";
 
 export function PaletaLista({
   paletaCriada,
+  paletaEditada,
   mode,
   updatePaLeta,
   deletePaleta,
@@ -69,7 +70,7 @@ export function PaletaLista({
 
   useEffect(() => {
     getPaletas();
-  }, []);
+  }, [paletaEditada]);
 
   return (
     <div className="PaletaLista">
