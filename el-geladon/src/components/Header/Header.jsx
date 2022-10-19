@@ -6,8 +6,9 @@ import sacola from "../../assets/icons/sacola.svg";
 import logo from "../../assets/logo.svg";
 import paleta from "../../assets/icons/paleta.svg";
 import atualizar from "../../assets/icons/atualizar.svg";
+import deletar from "../../assets/icons/deletar.svg";
 
-export function Header({ createPaleta, updatePaleta, mode }) {
+export function Header({ createPaleta, updatePaleta, mode, deletePaleta }) {
   return (
     <div className="Header">
       <div className="row">
@@ -23,12 +24,29 @@ export function Header({ createPaleta, updatePaleta, mode }) {
         <div className="Header__opcoes Opcoes">
           <button
             type="button"
-            className={`Opcoes__paleta Paleta ${mode === ActionMode.ATUALIZAR && "Paleta--ativa"}`}
+            className={`Opcoes__paleta Paleta ${
+              mode === ActionMode.ATUALIZAR && "Paleta--ativa"
+            }`}
             onClick={() => updatePaleta()}
           >
             <img
               src={atualizar}
               alt="Editar paleta"
+              className="Paleta__icone"
+              width="40px"
+            />
+          </button>
+
+          <button
+            type="button"
+            className={`Opcoes__paleta Paleta ${
+              mode === ActionMode.DELETAR && "Paleta--deletar"
+            }`}
+            onClick={() => deletePaleta()}
+          >
+            <img
+              src={deletar}
+              alt="Deletar paleta"
               className="Paleta__icone"
               width="40px"
             />
