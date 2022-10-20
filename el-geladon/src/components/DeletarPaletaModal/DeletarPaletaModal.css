@@ -1,0 +1,39 @@
+.DeletarPaletaModal {
+  margin-top: -20px;
+}
+
+.DeletarPaletaModal > div {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.DeletarPaletaModal__foto {
+  position: absolute;
+  right: 0px;
+  bottom: 10px;
+  width: 80px;
+}
+
+.DeletarPaletaModal__confirmar,
+.DeletarPaletaModal__cancelar {
+  border: none;
+  border-radius: 5px;
+  font-family: "Exo", sans-serif;
+  padding: 5px;
+  max-width: 280px;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 48%;
+  color: white;
+}
+
+.DeletarPaletaModal__confirmar {
+  background-color: darkviolet;
+}
+
+.DeletarPaletaModal__cancelar {
+  background-color: red;
+}

@@ -11,6 +11,7 @@ export function PaletaLista({
   mode,
   updatePaLeta,
   deletePaleta,
+  paletaRemovida
 }) {
   const [paletas, setPaletas] = useState([]);
 
@@ -70,7 +71,7 @@ export function PaletaLista({
 
   useEffect(() => {
     getPaletas();
-  }, [paletaEditada]);
+  }, [paletaEditada, paletaRemovida]);
 
   return (
     <div className="PaletaLista">

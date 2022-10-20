@@ -32,15 +32,24 @@ export function PaletaListaItem({
 
   const badgeAction = (canReader) => {
     if (canReader) {
-      return <span className="PaletaListaItem__tag">{mode}</span>;
+      return (
+        <span
+          className={`PaletaListaItem__tag ${
+            mode === ActionMode.DELETAR && "PaletaListaItem__tag--deletar"
+          }`}
+        >
+          {mode}
+        </span>
+      );
     }
   };
 
   return (
     <div
-      className={`PaletaListaItem ${
-        mode !== ActionMode.NORMAL && "PaletaListaItem--disable"
-      }`}
+      className={`PaletaListaItem
+      ${mode !== ActionMode.NORMAL && "PaletaListaItem--disable"}
+      ${mode === ActionMode.DELETAR && "PaletaListaItem--deletar"}
+      `}
       onClick={() => clickItem(paleta._id)}
     >
       {badgeCounter(quantidadeSelecionada)}
