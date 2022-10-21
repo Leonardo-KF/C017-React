@@ -71,7 +71,7 @@ export function PaletaLista({
 
   useEffect(() => {
     getPaletas();
-  }, [paletaEditada, paletaRemovida]);
+  }, [paletaEditada, paletaRemovida, paletas]);
 
   return (
     <div className="PaletaLista">
