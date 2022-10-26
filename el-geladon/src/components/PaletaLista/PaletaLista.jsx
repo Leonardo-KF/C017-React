@@ -11,11 +11,13 @@ export function PaletaLista({
   mode,
   updatePaLeta,
   deletePaleta,
-  paletaRemovida
+  paletaRemovida,
 }) {
+  const selecionadas = JSON.parse(localStorage.getItem("selecionadas")) ?? {};
+
   const [paletas, setPaletas] = useState([]);
 
-  const [paletaSelecionada, setPaletaSelecionada] = useState({});
+  const [paletaSelecionada, setPaletaSelecionada] = useState(selecionadas);
 
   const [paletaModal, setPaletaModal] = useState(false);
 
@@ -34,6 +36,19 @@ export function PaletaLista({
 
     setPaletaSelecionada({ ...paletaSelecionada, ...paleta });
   };
+
+  const setSelecionadas = useCallback(() => {
+    if (!paletas.length) return;
+
+    const entries = Object.entries(paletaSelecionada);
+    const sacola = entries.map((arr) => ({
+      paletaId: paletas[arr[0]]._id,
+      quantidade: arr[1],
+    }));
+
+    localStorage.setItem("sacola", JSON.stringify(sacola));
+    localStorage.setItem("selecionadas", JSON.stringify(paletaSelecionada));
+  });
 
   const getPaletas = async () => {
     const response = await api.getAllPaletas();
@@ -59,6 +74,10 @@ export function PaletaLista({
     },
     [paletas]
   );
+
+  useEffect(() => {
+    setSelecionadas();
+  }, [setSelecionadas, paletaSelecionada]);
 
   useEffect(() => {
     if (

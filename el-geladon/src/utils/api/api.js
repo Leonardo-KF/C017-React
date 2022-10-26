@@ -47,4 +47,34 @@ export const api = {
 
     return paletaDeleted;
   },
+
+  getAllSacola: async () => {
+    const response = await fetch(`${defaultUrl}/all-sacola`);
+
+    const allSacola = response.json();
+    
+    return allSacola;
+  },
+
+  createSacola: async (sacola) => {
+    const response = await fetch(`${defaultUrl}/create-sacola`, {
+      method: "POST",
+      headers: new Headers({ "Content-Type": "application/json" }),
+      body: JSON.stringify(sacola),
+    });
+
+    const newSacola = await response.json();
+
+    return newSacola;
+  },
+
+  finishSacola: async () => {
+    const response = await fetch(`${defaultUrl}/finish-sacola`, {
+      method: "DELETE",
+    });
+
+    const sacolaClosed = response.json();
+
+    return sacolaClosed;
+  },
 };
