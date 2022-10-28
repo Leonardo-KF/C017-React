@@ -4,6 +4,16 @@
   grid-gap: 25px 50px;
 }
 
+.PaletaLista-filtro {
+  margin-bottom: 20px;
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  width: 100%;
+  border-radius: 5px;
+  height: 40px;
+  padding: 2px 10px;
+}
+
 @media (max-width: 1220px) {
   .PaletaLista {
     grid-template-columns: repeat(2, 1fr);

@@ -8,7 +8,13 @@ import paleta from "../../assets/icons/paleta.svg";
 import atualizar from "../../assets/icons/atualizar.svg";
 import deletar from "../../assets/icons/deletar.svg";
 
-export function Header({ createPaleta, updatePaleta, mode, deletePaleta }) {
+export function Header({
+  createPaleta,
+  updatePaleta,
+  mode,
+  deletePaleta,
+  openBag,
+}) {
   return (
     <div className="Header">
       <div className="row">
@@ -65,7 +71,7 @@ export function Header({ createPaleta, updatePaleta, mode, deletePaleta }) {
             />
           </button>
 
-          <div className="Opcoes__sacola Sacola">
+          <div className="Opcoes__sacola Sacola" onClick={openBag}>
             <img
               src={sacola}
               alt="Sacola de Compras"
