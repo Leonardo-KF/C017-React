@@ -71,7 +71,7 @@ export function PaletaLista({
   };
 
   const filtroPorTitulo = ({ target }) => {
-    const lista = [...paletas].filter((titulo) =>
+    const lista = [...paletas].filter(({ titulo }) =>
       matchByText(titulo, target.value)
     );
 
